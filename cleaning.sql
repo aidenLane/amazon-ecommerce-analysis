@@ -125,3 +125,44 @@ END;
 -- Verify that there are no nulls
 SELECT * FROM amazon_sales WHERE status_category IS NULL;
 -- So, there is no real need for an else case
+
+
+/*
+Alter table to have properly formatted names for each 
+of the 36 states and union territories of India.
+*/
+UPDATE amazon_sales
+SET ship_state = UPPER(ship_state);
+
+UPDATE amazon_sales
+SET ship_state = CASE
+	WHEN ship_state='ANDAMAN & NICOBAR '
+		THEN 'Andaman and Nicobar'
+	WHEN ship_state IN ('APO','ANDHRA PRADESH', 'ANDRHA PRADESH')
+		THEN 'Andhra Pradesh'
+	WHEN ship_state='AR'
+		THEN 'ARUNACHAL PRADESH'
+	WHEN ship_state='NEW DELHI'
+		THEN 'DELHI'
+	WHEN ship_state='GUJARAT' 
+		THEN 'Gujarat'
+	WHEN ship_state='JAMMU & KASHMIR'
+		THEN 'Jammu and Kashmir'   --Power BI shape map formatting
+	WHEN ship_state='NL'
+		THEN 'NAGALAND'
+	WHEN ship_state IN ('ORISSA','ODISHA')
+		THEN 'Orissa'  --Power BI shape map formatting
+	WHEN ship_state IN ('PB','PUNJAB/MOHALI/ZIRAKPUR')
+		THEN 'PUNJAB'
+	WHEN ship_state='PONDICHERRY' 
+		THEN 'PUDUCHERRY'
+	WHEN ship_state IN ('RAJASTHAN', 'RAJSHTHAN', 'RAJSTHAN', 'RJ')
+		THEN 'RAJASTHAN'
+	WHEN ship_state='UTTARAKHAND'
+		THEN 'Uttaranchal'  --Power BI shape map formatting
+	ELSE ship_state
+END;
+
+UPDATE amazon_sales
+SET category = 'Kurta' 
+WHERE category = 'kurta';
