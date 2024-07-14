@@ -11,7 +11,7 @@ July 2024
 SELECT * FROM amazon_sales ORDER BY index ASC LIMIT 5;
 
 -- Range of Dates
-SELECT MIN(sale_date), MAX(sale_date) FROM amazon_sales;
+SELECT MIN(sale_date), MAX(sale_date),MAX(sale_date)-MIN(sale_date)  FROM amazon_sales;
 
 -- Now, finding counts for categorical variables that may be relevant.
 

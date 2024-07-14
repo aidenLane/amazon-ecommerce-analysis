@@ -11,7 +11,6 @@ SELECT * FROM amazon_sales ORDER BY index ASC LIMIT 5;
 /*
 First, want to reconfigure these poorly formatted column names
 for the ease of SQL and PowerBI analysis. More SQL friendly column names
-
 */
 
 --Rename 'Date' column to simplify upcoming queries
@@ -72,7 +71,7 @@ RENAME COLUMN "fulfilled-by" TO fulfilled_by;
 
 /*
 Change date formatting for sale_date column from MM-DD-YY to 
-standard date format of YYYY-MM-DD (in sql/pbi?)
+standard date format of YYYY-MM-DD 
 */
 
 UPDATE amazon_sales SET sale_date = TO_DATE(sale_date, 'MM-DD-YY');
