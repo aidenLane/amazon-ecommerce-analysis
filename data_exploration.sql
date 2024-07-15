@@ -89,11 +89,14 @@ ORDER BY revenue DESC;
 -- somewhat similar revenue share, however June had less sales.
 
 -- Examine relevant numerical data
+
+-- Find AOV (of nonzero amount orders)
 SELECT ROUND(AVG(amount)::numeric,2) AS "Average Order Amount (INR)",
 	ROUND(STDDEV(amount)::numeric,2) AS "Standard Deviation for Order Amount",
 	MIN(amount),
 	MAX(amount)
-FROM amazon_sales;
+FROM amazon_sales
+WHERE amount != 0 AND amount IS NOT NULL;
 
 /*
 Examine odd case when the courier status is left blank, 
